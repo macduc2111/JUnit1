@@ -1,29 +1,105 @@
-# Unit Test - Phân tích điểm số học sinh
+#  Unit Test - Phân tích điểm số học sinh
 
-## Mô tả bài tập
-Cách chạy test :
-- Mở dự án
-- Chuột phải vào file `StudentAnalyzerTest.java` → Run 'StudentAnalyzerTest'
-Bài tập yêu cầu viết chương trình Java với lớp `StudentAnalyzer` để thực hiện hai chức năng chính:
+###  Họ và tên: Mạc Anh Đức
+###  MSSV: BIT220221
 
-1. **Đếm số lượng học sinh đạt loại Giỏi**: Với điểm số từ 0 đến 10, học sinh được coi là Giỏi nếu có điểm >= 8.0. Bỏ qua các điểm không hợp lệ (âm hoặc > 10).
-2. **Tính điểm trung bình hợp lệ**: Chỉ tính trung bình các điểm hợp lệ trong khoảng từ 0 đến 10.
+---
 
-Bên cạnh đó, sinh viên cần viết **test case JUnit** để kiểm thử các trường hợp như:
-- Trường hợp bình thường (nhiều điểm hợp lệ và không hợp lệ),
-- Trường hợp biên (danh sách trống, điểm = 0 hoặc 10),
-- Trường hợp ngoại lệ (có điểm âm hoặc lớn hơn 10).
+##  Mô tả bài toán
 
-2. Mô tả hàm StudentAnalyzer
-   countExcellentStudents(List<Double> scores)
-   Mục đích: Đếm số học sinh đạt điểm >= 8.0.
+Bài tập yêu cầu xây dựng một chương trình Java với lớp `StudentAnalyzer` thực hiện hai chức năng chính:
 
-Bỏ qua điểm không hợp lệ (âm hoặc > 10).
+1. **Đếm số lượng học sinh đạt loại Giỏi**:
+   - Một học sinh được xem là *Giỏi* nếu điểm số của họ **≥ 8.0**.
+   - Bỏ qua các điểm không hợp lệ (âm hoặc lớn hơn 10).
+   - Nếu danh sách điểm trống hoặc null → trả về 0.
 
-Nếu danh sách rỗng → trả về 0.
+2. **Tính điểm trung bình hợp lệ**:
+   - Chỉ tính trung bình cộng của các điểm hợp lệ (0 ≤ điểm ≤ 10).
+   - Nếu không có điểm hợp lệ → trả về 0.
 
-calculateValidAverage(List<Double> scores)
-Mục đích: Tính trung bình cộng các điểm hợp lệ (0 ≤ điểm ≤ 10).
+---
 
-Nếu không có điểm hợp lệ → trả về 0.
+##  Cấu trúc dự án
+
+JUnit1/
+├── pom.xml
+├── README.md
+├── src/
+│ ├── main/
+│ │ └── java/
+│ │ └── org/example/
+│ │ └── StudentAnalyzer.java
+│ └── test/
+│ └── java/
+│ └── StudentAnalyzerTest.java
+
+
+---
+
+##  Cách chạy kiểm thử
+
+### Bằng IntelliJ IDEA:
+
+1. Mở project `JUnit1` trong IntelliJ.
+2. Mở file `src/test/java/StudentAnalyzerTest.java`.
+3. Chuột phải vào file → Chọn **Run 'StudentAnalyzerTest'**.
+4. Xem kết quả kiểm thử trong cửa sổ `Run`.
+
+---
+
+##  Các trường hợp kiểm thử đã thực hiện
+
+1. Danh sách chứa điểm hợp lệ và không hợp lệ.
+2. Danh sách trống.
+3. Danh sách chỉ toàn điểm hợp lệ.
+4. Danh sách chỉ toàn điểm không hợp lệ.
+5. Trường hợp biên: điểm = 0.0 và 10.0.
+6. Trường hợp đặc biệt: danh sách là `null`.
+
+---
+
+##  Các hàm được kiểm thử
+
+### `countExcellentStudents(List<Double> scores)`
+
+- Trả về số lượng học sinh có điểm từ **8.0 đến 10.0**.
+- Bỏ qua các điểm không hợp lệ (âm hoặc > 10).
+- Trả về `0` nếu danh sách `null` hoặc rỗng.
+
+### `calculateValidAverage(List<Double> scores)`
+
+- Tính trung bình cộng của các điểm hợp lệ (**0.0 ≤ điểm ≤ 10.0**).
+- Bỏ qua các điểm không hợp lệ.
+- Trả về `0` nếu không có điểm hợp lệ.
+
+---
+
+## Kết quả đo bao phủ kiểm thử
+
+###  Cách đo bao phủ bằng IntelliJ IDEA:
+
+1. Chuột phải vào file `StudentAnalyzerTest.java`.
+2. Chọn **Run 'StudentAnalyzerTest' with Coverage**.
+3. Xem kết quả trong tab `Coverage`.
+
+###  Kết quả đo thực tế:
+
+| Lớp              | Dòng được kiểm thử | Tổng số dòng | Bao phủ (%) |
+|------------------|-------------------|---------------|-------------|
+| StudentAnalyzer  | 28                | 28            | ✅ 100%      |
+
+ Mọi nhánh điều kiện (`if`, `for`) đều đã được kiểm thử đầy đủ.
+
+
+##  Đo bao phủ với JaCoCo (Tùy chọn nâng cao)
+
+Dự án đã tích hợp plugin **JaCoCo** trong `pom.xml`.
+
+### Cách sử dụng:
+
+1. Mở Terminal tại thư mục gốc dự án.
+2. Chạy lệnh:
+
+
 
